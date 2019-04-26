@@ -25,6 +25,9 @@ void Ball::setVelocity(float ballVelocity){
     _ballVelocity = ballVelocity;
 }
 
+float Ball::getVelocity(){
+    return _ballVelocity;
+}
 void Ball::update(float mFT){
     _shape.move(_velocity * mFT);
     

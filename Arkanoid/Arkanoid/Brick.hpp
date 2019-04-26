@@ -11,7 +11,12 @@
 
 class Brick : public Rectangle{
 public:
+    Brick() = default;
+    ~Brick() = default;
     Brick(float mX, float mY);
+    void setDestroyed(bool d){ _destroyed = d;}
+    bool getDestroyed() const {return _destroyed;}
+
 private:
-    bool destroyed = false;
+    bool _destroyed = false;
 };

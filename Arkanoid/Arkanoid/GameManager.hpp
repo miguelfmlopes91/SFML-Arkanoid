@@ -13,7 +13,7 @@
 class GameManager{
 public:
     GameManager();
-    ~GameManager();
+    ~GameManager() = default;
 
     void run();
     
@@ -21,6 +21,11 @@ public:
     void updatePhase();
     void drawPhase();
 private:
+    
+    void testCollision(Paddle& mPaddle, Ball& mBall) noexcept;
+    
+    void testCollision(Brick& mBrick, Ball& mBall) noexcept;
+    
     // These members are related to the control of the game.
     sf::RenderWindow _window;
     float _lastFt = 0.f;
@@ -34,6 +39,6 @@ private:
 
     Ball ball;
     Paddle paddle;
-    
+    std::vector<Brick> bricks;    
     
 };

@@ -13,13 +13,16 @@ class Rectangle{
 protected:
     sf::RectangleShape _shape;
 public:
-    Rectangle();
-    ~Rectangle();
+    Rectangle() = default;
+    ~Rectangle() = default;
         float x() const noexcept { return _shape.getPosition().x; }
         float y() const noexcept { return _shape.getPosition().y; }
         float left() const noexcept { return x() - _shape.getSize().x / 2.f; }
         float right() const noexcept { return x() + _shape.getSize().x / 2.f; }
         float top() const noexcept { return y() - _shape.getSize().y / 2.f; }
         float bottom() const noexcept { return y() + _shape.getSize().y / 2.f; }
+    
+    sf::RectangleShape getShape(){ return _shape; }
+
 
 };

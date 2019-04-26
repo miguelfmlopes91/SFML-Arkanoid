@@ -13,7 +13,7 @@ class Paddle : public Rectangle{
 public:
     Paddle() = default;
     Paddle(float mX, float mY);
-    ~Paddle();
+    ~Paddle() = default;
     
     void update(float mFT);
 private:

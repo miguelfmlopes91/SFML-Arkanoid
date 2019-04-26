@@ -10,7 +10,8 @@
 #include "GameManager.hpp"
 
 int main(){
-    GameManager Game;
+    GameManager game;
     
+    game.run();
     return 0;
 }

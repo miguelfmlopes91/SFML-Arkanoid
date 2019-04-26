@@ -12,15 +12,18 @@
 class Ball{
   
 public:
-    Ball();
-    ~Ball();
+    Ball() = default;
+    ~Ball() = default;
     
     void setPosition(float mX, float mY);
     void setRadius(float ballRadius);
     void setFillColor(sf::Color color);
     void setOrigin(float ballRadiusX, float ballRadiusY);
     void setVelocity(float ballVelocity);
+    float getVelocity();
+
     
+    sf::CircleShape getShape(){ return _shape; }
     void update(float mFT);
     
     float x() const noexcept { return _shape.getPosition().x; }
@@ -29,11 +32,13 @@ public:
     float right() const noexcept { return x() + _shape.getRadius(); }
     float top() const noexcept { return y() - _shape.getRadius(); }
     float bottom() const noexcept { return y() + _shape.getRadius(); }
+    
+    sf::Vector2f _velocity{_ballVelocity,_ballVelocity};
+
 private:
     
     float _ballVelocity = 0.0f;
 
     sf::CircleShape _shape;
-    sf::Vector2f _velocity{_ballVelocity,_ballVelocity};
     
 };
