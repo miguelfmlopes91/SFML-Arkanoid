@@ -10,6 +10,9 @@
 #include <cmath>
 #include <chrono>
 
+constexpr float ballRadius{10.f}, ballVelocity{0.8f};
+
+
 GameManager::GameManager(){
     _window.create(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar);
     // On construction, we initialize the window and create
@@ -21,6 +24,12 @@ GameManager::GameManager(){
     
     
     ball.setPosition(WINDOWWIDTH/2, WINDOWHEIGHT/2);
+
+    ball.setRadius(ballRadius);
+    ball.setFillColor(sf::Color::Red);
+    ball.setOrigin(ballRadius, ballRadius);
+    ball.setVelocity(ballVelocity);
+    ball._velocity = {ball.getVelocity(),ball.getVelocity()};
     paddle = Paddle(WINDOWWIDTH / 2, WINDOWHEIGHT - 50);
     
     for(int iX = 0; iX < _countBlocksX; ++iX)
@@ -78,7 +87,7 @@ void GameManager::inputPhase()
         }
     }
     
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) _running = false;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) _window.close();
 }
 
 void GameManager::updatePhase()
@@ -91,7 +100,7 @@ void GameManager::updatePhase()
         
         testCollision(paddle, ball);
         for(auto& brick : bricks) testCollision(brick, ball);
-        bricks.erase(remove_if(begin(bricks), end(bricks),
+        bricks.erase(std::remove_if(begin(bricks), end(bricks),
                                [](const Brick& mBrick)
                                {
                                    return mBrick.getDestroyed();
